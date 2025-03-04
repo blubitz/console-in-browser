@@ -5,6 +5,18 @@
  */
 
 /**
+ * Generates a current timestamp in "HH:MM" format.
+ *
+ * @returns {string} The current time as a string, zero-padded.
+ */
+function getTimestamp() {
+    const now = new Date()
+    const hours = String(now.getHours()).padStart(2, '0')
+    const minutes = String(now.getMinutes()).padStart(2, '0')
+    return `${hours}:${minutes}`
+}
+
+/**
  * Hooks into `console.log`, `console.warn`, and `console.error` to intercept messages.
  * Sends each message (with a timestamp) to the provided callback.
  * Also listens for `window.onerror` and `unhandledrejection` events to capture uncaught errors.
@@ -13,13 +25,6 @@
  */
 export function consolePipe(callback) {
     const consoleFuncs = ['log', 'warn', 'error']
-
-    function getTimestamp() {
-        const now = new Date()
-        const hours = String(now.getHours()).padStart(2, '0')
-        const minutes = String(now.getMinutes()).padStart(2, '0')
-        return `${hours}:${minutes}`
-    }
 
     function appendToConsoleOutput(message, method) {
         callback(getTimestamp(), method, message)
@@ -89,6 +94,15 @@ export function createConsoleDOM(container, colors) {
     container.appendChild(consoleElement);
 
     function printMessage(time, type, message) {
+        if (arguments.length == 1) {
+            message = arguments[0]
+            time = getTimestamp()
+        } else if (arguments.length == 2) {
+            type = arguments[0]
+            message = arguments[1]
+            time = getTimestamp()
+        }
+
         const line = document.createElement('div');
         line.style.margin = '2px 0';
         line.style.padding = '2px 4px';
@@ -97,7 +111,7 @@ export function createConsoleDOM(container, colors) {
         line.style.color = resolvedColors[`${type}Text`] ?? resolvedColors.consoleText;
         line.style.backgroundColor = resolvedColors[`${type}Bg`] ?? resolvedColors.consoleBg;
 
-        line.textContent = `${time} [${type.toUpperCase()}] ${message}`;
+        line.textContent = [time, type?.toUpperCase(), message].join(' ');
         consoleElement.appendChild(line);
 
         // Auto-scroll to bottom
