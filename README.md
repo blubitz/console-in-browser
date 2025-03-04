@@ -12,6 +12,8 @@
 npm i console-in-browser
 ```
 
+![Files](https://raw.githubusercontent.com/blubitz/console-in-browser/main/images/console.png)
+
 ## Overview
 
 This module provides utilities to intercept console messages and display them in a custom-styled console within a web page.
