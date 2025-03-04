@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>console-in-browser Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        #consoleContainer {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ConsolePipe Demo</h1>
+
+    <div id="consoleContainer"></div>
+
+    <button onclick="console.log('Test log message')">Log Message</button>
+    <button onclick="console.warn('Test warning message')">Warn Message</button>
+    <button onclick="console.error('Test error message')">Error Message</button>
+    <button onclick="throw new Error('Uncaught error')">Throw Error</button>
+    <button onclick="Promise.reject('Unhandled promise rejection')">Reject Promise</button>
+
+    <script type="module">
+        import { consolePipe, createConsoleDOM } from './node_modules/console-in-browser/index.js'; // Adjust the path if needed
+
+        // Set up the custom console
+        const container = document.getElementById('consoleContainer');
+        const domConsole = createConsoleDOM(container);
+
+        // Pipe console messages and errors to the custom console
+        consolePipe(domConsole.printMessage);
+    </script>
+
+</body>
+
+</html>
