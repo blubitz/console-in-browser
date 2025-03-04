@@ -42,20 +42,20 @@ export function consolePipe(callback) {
             appendToConsoleOutput(`${args.join(' ')}`, method)
             original.apply(console, args)
         }
+    })
 
-        window.addEventListener('error', event => {
-            appendToConsoleOutput(
-                `Uncaught Error: ${event.message} at ${event.filename}:${event.lineno}:${event.colno}`,
-                'error'
-            )
-        })
+    window.addEventListener('error', event => {
+        appendToConsoleOutput(
+            `Uncaught Error: ${event.message} at ${event.filename}:${event.lineno}:${event.colno}`,
+            'error'
+        )
+    })
 
-        window.addEventListener('unhandledrejection', event => {
-            appendToConsoleOutput(
-                `Unhandled Promise Rejection: ${event.reason}`,
-                'error'
-            )
-        })
+    window.addEventListener('unhandledrejection', event => {
+        appendToConsoleOutput(
+            `Unhandled Promise Rejection: ${event.reason}`,
+            'error'
+        )
     })
 }
 
