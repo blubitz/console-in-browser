@@ -64,7 +64,11 @@ export function consolePipe(callback) {
  * Returns an object with methods to print messages into the console.
  *
  * @param {HTMLElement} container - The parent element to attach the console to.
- * @returns {{ printMessage: (time: string, type: string, message: string) => void }} 
+ * @returns {{ printMessage: (timeOrTypeOrMessage: string, typeOrMessage?: string, message?: string) => void }}
+ * A function to print messages into the console. Supports:
+ * - `printMessage('Message')`: log without type.
+ * - `printMessage('error', 'Message')`: log with type.
+ * - `printMessage('12:34', 'error', 'Message')`: log with custom time.
  */
 export function createConsoleDOM(container, colors) {
     const resolvedColors = {
@@ -111,7 +115,8 @@ export function createConsoleDOM(container, colors) {
         line.style.color = resolvedColors[`${type}Text`] ?? resolvedColors.consoleText;
         line.style.backgroundColor = resolvedColors[`${type}Bg`] ?? resolvedColors.consoleBg;
 
-        line.textContent = [time, type?.toUpperCase(), message].join(' ');
+        if (type) type = `[${type.toUpperCase()}]`
+        line.textContent = [time, type, message].join(' ');
         consoleElement.appendChild(line);
 
         // Auto-scroll to bottom
