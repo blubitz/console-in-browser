@@ -26,7 +26,7 @@
 
 <body>
 
-    <h1>ConsolePipe Demo</h1>
+    <h1><b>console-in-browser</b> Demo</h1>
 
     <div id="consoleContainer"></div>
 
@@ -37,7 +37,7 @@
     <button onclick="Promise.reject('Unhandled promise rejection')">Reject Promise</button>
 
     <script type="module">
-        import { consolePipe, createConsoleDOM } from './node_modules/console-in-browser/index.js'; // Adjust the path if needed
+        import { consolePipe, createConsoleDOM } from './index.js'; // Adjust the path if needed
 
         // Set up the custom console
         const container = document.getElementById('consoleContainer');

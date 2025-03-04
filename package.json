@@ -22,10 +22,12 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "build": "copyfiles index.js docs/",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "release-it"
+    "release": "npm run build && release-it"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "release-it": "^18.1.2"
   }
 }
