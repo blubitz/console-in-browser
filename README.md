@@ -6,6 +6,8 @@
 
 > Pass console outputs to the screen
 
+## 🚀 [Live Demo](https://blubitz.github.io/console-in-browser/)
+
 ## Installation
 
 ```bash
@@ -13,8 +15,6 @@ npm i console-in-browser
 ```
 
 ![Files](https://raw.githubusercontent.com/blubitz/console-in-browser/main/images/console.png)
-
-🚀 [Live Demo](https://blubitz.github.io/console-in-browser/)
 
 ## Overview
 
