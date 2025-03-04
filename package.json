@@ -1,6 +1,6 @@
 {
   "name": "console-in-browser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "pass console outputs to the screen ",
   "keywords": [
     "console",
