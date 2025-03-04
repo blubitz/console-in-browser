@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+
+# OS junk files (macOS, Windows, Linux)
+.DS_Store            # macOS
+Thumbs.db            # Windows
+Desktop.ini          # Windows
+ehthumbs.db          # Windows
+$RECYCLE.BIN/        # Windows
+.nfs*                 # Linux (leftover from unlinked NFS files)
+
+# IDE/Editor settings
+.vscode/
+.idea/
+
+# Misc (temp files from editors or terminals)
+*.swp
+*.swo
+*.bak
+*~
