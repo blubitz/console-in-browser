@@ -34,13 +34,13 @@ export function consolePipe(callback) {
         const original = console[method]
 
         console[method] = (...args) => {
+            original.apply(console, args)
             args = args.map(a =>
                 typeof a === 'object' ?
                     JSON.stringify(a, null, 2) :
                     a
             )
             appendToConsoleOutput(`${args.join(' ')}`, method)
-            original.apply(console, args)
         }
     })
 
